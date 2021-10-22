@@ -117,7 +117,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files\Euresys\eGrabber\include;C:\Users\ramanlab\source\repos\ImarisWriterTest\ImarisWriter\interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\Euresys\eGrabber\include;C:\Users\ramanlab\source\repos\ImarisWriterTest\ImarisWriter\interface;C:\Program Files\FLIR Systems\Spinnaker\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -146,6 +146,7 @@
     <ClCompile Include="AcquisitionThread.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="EGrabberCameraManager.cpp" />
+    <ClCompile Include="FLIRCameraManager.cpp" />
     <ClCompile Include="ImageBuffer.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="ImarisImageManager.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="CameraManagers.h" />
     <ClInclude Include="EGrabberCameraManager.h" />
+    <ClInclude Include="FLIRCameraManager.h" />
     <ClInclude Include="ImageBuffer.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="ImageManagers.h" />

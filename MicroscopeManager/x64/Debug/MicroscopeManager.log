@@ -1,7 +1,11 @@
-﻿  MicroscopeManager.cpp
+﻿  AcquisitionThread.cpp
 C:\Users\ramanlab\source\repos\ImarisWriterTest\ImarisWriter\interface\bpImageConverter.h(53,53): warning C4251: 'bpImageConverter<TDataType>::mImpl': class 'std::unique_ptr<bpImageConverterInterface<TDataType>,std::default_delete<bpImageConverterInterface<TDataType>>>' needs to have dll-interface to be used by clients of class 'bpImageConverter<TDataType>'
 C:\Users\ramanlab\source\repos\ImarisWriterTest\ImarisWriter\interface\bpConverterTypes.h(61): message : see declaration of 'std::unique_ptr<bpImageConverterInterface<TDataType>,std::default_delete<bpImageConverterInterface<TDataType>>>'
 C:\Users\ramanlab\source\repos\ImarisWriterTest\ImarisWriter\interface\bpImageConverter.h(54): message : see reference to class template instantiation 'bpImageConverter<TDataType>' being compiled
-  SerialManager.cpp
+  FLIRCameraManager.cpp
+  MicroscopeManager.cpp
+C:\Users\ramanlab\source\repos\ImarisWriterTest\ImarisWriter\interface\bpImageConverter.h(53,53): warning C4251: 'bpImageConverter<TDataType>::mImpl': class 'std::unique_ptr<bpImageConverterInterface<TDataType>,std::default_delete<bpImageConverterInterface<TDataType>>>' needs to have dll-interface to be used by clients of class 'bpImageConverter<TDataType>'
+C:\Users\ramanlab\source\repos\ImarisWriterTest\ImarisWriter\interface\bpConverterTypes.h(61): message : see declaration of 'std::unique_ptr<bpImageConverterInterface<TDataType>,std::default_delete<bpImageConverterInterface<TDataType>>>'
+C:\Users\ramanlab\source\repos\ImarisWriterTest\ImarisWriter\interface\bpImageConverter.h(54): message : see reference to class template instantiation 'bpImageConverter<TDataType>' being compiled
   Generating Code...
   MicroscopeManager.vcxproj -> C:\Users\ramanlab\source\repos\MicroscopeManager\x64\Debug\MicroscopeManager.lib

@@ -19,6 +19,7 @@ MicroscopeManager::MicroscopeManager(std::string filename) :
 	imageManagerTypes.push_back("Imaris");
 
 	cameraManagerTypes.push_back("EGrabber");
+	cameraManagerTypes.push_back("FLIR");
 
 	serialManagerTypes.push_back("Windows");
 }
@@ -26,6 +27,14 @@ MicroscopeManager::MicroscopeManager(std::string filename) :
 MicroscopeManager::~MicroscopeManager()
 {
 	StopAcquisition();
+
+	//Ensures intensifier gate is closed
+	std::string stopIntensifier = "SEOG0";
+	stopIntensifier += '\r';
+	for (std::string device : GetConnectedSerialDevices())
+	{
+		SerialWrite(device, stopIntensifier.c_str(), stopIntensifier.size());
+	}
 
 	if (imageManager)
 	{
@@ -84,6 +93,11 @@ void MicroscopeManager::CreateCameraManager(std::string cameraManagerType, char*
 	if(cameraManagerType == "EGrabber")
 	{
 		cameraManager = new EGrabberCameraManager();
+	}
+
+	if (cameraManagerType == "FLIR")
+	{
+		cameraManager = new FLIRCameraManager();
 	}
 }
 
