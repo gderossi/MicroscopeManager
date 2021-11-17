@@ -7,7 +7,7 @@ class WindowsSerialDevice :
     public SerialDevice
 {
 public:
-    WindowsSerialDevice(HANDLE port, int baudrate);
+    WindowsSerialDevice(HANDLE port, int baudrate, std::vector<std::string> exitCommands);
     ~WindowsSerialDevice();
 
     void WriteData(const char buf[], unsigned long long writeSize);

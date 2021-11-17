@@ -8,6 +8,7 @@
 class CameraManager
 {
 public:
+	virtual ~CameraManager();
 	virtual double GetFloatParameter(int module, std::string name) = 0;
 	virtual void SetFloatParameter(int module, std::string name, double value) = 0;
 	virtual long long GetIntParameter(int module, std::string name) = 0;

@@ -62,7 +62,7 @@ std::vector<std::string> WindowsSerialManager::GetSerialPorts()
 	return portList;
 }
 
-void WindowsSerialManager::CreateSerialDevice(std::string deviceName, std::string portName, int baudrate)
+void WindowsSerialManager::CreateSerialDevice(std::string deviceName, std::string portName, int baudrate, std::vector<std::string> exitCommands)
 {
 	HANDLE port = CreateFileA(
 		portName.c_str(),
@@ -73,7 +73,7 @@ void WindowsSerialManager::CreateSerialDevice(std::string deviceName, std::strin
 		0,
 		0);
 
-	devices.emplace(deviceName, new WindowsSerialDevice(port, baudrate));
+	devices.emplace(deviceName, new WindowsSerialDevice(port, baudrate, exitCommands));
 }
 
 void WindowsSerialManager::DeleteSerialDevice(std::string deviceName)

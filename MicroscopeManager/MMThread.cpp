@@ -1,5 +1,10 @@
 #include "MMThread.h"
 
+MMThread::~MMThread()
+{
+
+}
+
 MMThread::MMThread() :
 	active(true)
 {}

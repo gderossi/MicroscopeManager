@@ -22,7 +22,7 @@ public:
 	void CreateSerialManager(std::string serialManagerType, char* parameters);
 
 	std::vector<std::string> GetSerialPorts();
-	void ConnectSerialDevice(std::string deviceName, std::string portName, int baudrate);
+	void ConnectSerialDevice(std::string deviceName, std::string portName, int baudrate, std::vector<std::string> exitCommands);
 	void DisconnectSerialDevice(std::string deviceName);
 	std::vector<std::string> GetConnectedSerialDevices();
 	void SerialWrite(std::string deviceName, const char* data, unsigned long long writeSize);

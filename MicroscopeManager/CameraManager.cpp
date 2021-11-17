@@ -1,5 +1,10 @@
 #include "CameraManager.h"
 
+CameraManager::~CameraManager()
+{
+
+}
+
 unsigned char* CameraManager::GetImageBuffer()
 {
 	return imgBuffer_.pixels;

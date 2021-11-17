@@ -5,6 +5,7 @@
 class ImageManager
 {
 public:
+	virtual ~ImageManager();
 	virtual void ProcessData() = 0;
 	virtual void CompressData() = 0;
 	virtual void CreateFile() = 0;

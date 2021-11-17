@@ -155,6 +155,7 @@
     <ClCompile Include="RawImageManager.cpp" />
     <ClCompile Include="SerialDevice.cpp" />
     <ClCompile Include="SerialManager.cpp" />
+    <ClCompile Include="TestCameraManager.cpp" />
     <ClCompile Include="WindowsSerialDevice.cpp" />
     <ClCompile Include="WindowsSerialManager.cpp" />
   </ItemGroup>
@@ -174,6 +175,7 @@
     <ClInclude Include="SerialDevice.h" />
     <ClInclude Include="SerialManager.h" />
     <ClInclude Include="SerialManagers.h" />
+    <ClInclude Include="TestCameraManager.h" />
     <ClInclude Include="WindowsSerialDevice.h" />
     <ClInclude Include="WindowsSerialManager.h" />
   </ItemGroup>

@@ -4,3 +4,4 @@
 
 #include "EGrabberCameraManager.h"
 #include "FLIRCameraManager.h"
+#include "TestCameraManager.h"

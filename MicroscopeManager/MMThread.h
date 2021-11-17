@@ -7,6 +7,7 @@ class MMThread
 {
 public:
 	MMThread();
+	virtual ~MMThread();
 	virtual void WaitForThread() = 0;
 	virtual void StopThread();
 

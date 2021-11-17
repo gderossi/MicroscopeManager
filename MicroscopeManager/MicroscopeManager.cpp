@@ -20,6 +20,7 @@ MicroscopeManager::MicroscopeManager(std::string filename) :
 
 	cameraManagerTypes.push_back("EGrabber");
 	cameraManagerTypes.push_back("FLIR");
+	cameraManagerTypes.push_back("Test");
 
 	serialManagerTypes.push_back("Windows");
 }
@@ -27,14 +28,6 @@ MicroscopeManager::MicroscopeManager(std::string filename) :
 MicroscopeManager::~MicroscopeManager()
 {
 	StopAcquisition();
-
-	//Ensures intensifier gate is closed
-	std::string stopIntensifier = "SEOG0";
-	stopIntensifier += '\r';
-	for (std::string device : GetConnectedSerialDevices())
-	{
-		SerialWrite(device, stopIntensifier.c_str(), stopIntensifier.size());
-	}
 
 	if (imageManager)
 	{
@@ -99,6 +92,11 @@ void MicroscopeManager::CreateCameraManager(std::string cameraManagerType, char*
 	{
 		cameraManager = new FLIRCameraManager();
 	}
+
+	if (cameraManagerType == "Test")
+	{
+		cameraManager = new TestCameraManager();
+	}
 }
 
 void MicroscopeManager::CreateSerialManager(std::string serialManagerType, char* parameters)
@@ -128,11 +126,11 @@ std::vector<std::string> MicroscopeManager::GetSerialPorts()
 	return std::vector<std::string>();
 }
 
-void MicroscopeManager::ConnectSerialDevice(std::string deviceName, std::string portName, int baudrate)
+void MicroscopeManager::ConnectSerialDevice(std::string deviceName, std::string portName, int baudrate, std::vector<std::string> exitCommands)
 {
 	if (serialManager)
 	{
-		serialManager->CreateSerialDevice(deviceName, portName, baudrate);
+		serialManager->CreateSerialDevice(deviceName, portName, baudrate, exitCommands);
 	}
 }
 

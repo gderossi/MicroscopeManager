@@ -10,10 +10,12 @@
 #include "WindowsSerialDevice.h"
 #include <iostream>
 
-WindowsSerialDevice::WindowsSerialDevice(HANDLE port, int baudrate) :
+WindowsSerialDevice::WindowsSerialDevice(HANDLE port, int baudrate, std::vector<std::string> exitCommands) :
 	bytesWritten_(0),
 	bytesRead_(0)
 {
+	SetExitCommands(exitCommands);
+
 	COMMTIMEOUTS timeouts = { 0 };
 
 	port_ = port;
@@ -37,6 +39,11 @@ WindowsSerialDevice::~WindowsSerialDevice()
 {
 	if (port_ != INVALID_HANDLE_VALUE && port_ != NULL)
 	{
+		for (std::string command : GetExitCommands())
+		{
+			WriteData(command.c_str(), command.size());
+		}
+
 		CloseHandle(port_);
 	}
 }
