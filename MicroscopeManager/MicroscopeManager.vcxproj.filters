@@ -39,9 +39,6 @@
     <ClCompile Include="WindowsSerialManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WindowsSerialDevice.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="EGrabberCameraManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -93,9 +90,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WindowsSerialManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowsSerialDevice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EGrabberCameraManager.h">

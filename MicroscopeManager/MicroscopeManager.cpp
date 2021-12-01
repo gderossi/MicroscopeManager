@@ -142,7 +142,7 @@ void MicroscopeManager::DisconnectSerialDevice(std::string deviceName)
 	}
 }
 
-std::vector<std::string> MicroscopeManager::GetConnectedSerialDevices()
+std::vector<std::string> MicroscopeManager::ListConnectedSerialDevices()
 {
 	if (serialManager)
 	{
@@ -150,6 +150,11 @@ std::vector<std::string> MicroscopeManager::GetConnectedSerialDevices()
 	}
 
 	return std::vector<std::string>();
+}
+
+SerialDevice* MicroscopeManager::GetSerialDevice(std::string deviceName)
+{
+	return serialManager->GetSerialDevice(deviceName);
 }
 
 void MicroscopeManager::SerialWrite(std::string deviceName, const char* data, unsigned long long writeSize)

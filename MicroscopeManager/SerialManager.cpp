@@ -13,6 +13,18 @@ SerialManager::~SerialManager()
 	}
 }
 
+void SerialManager::CreateSerialDevice(std::string deviceName, std::string portName, int baudrate, std::vector<std::string> exitCommands)
+{
+	devices.emplace(deviceName, new SerialDevice(portName, baudrate, exitCommands));
+}
+
+void SerialManager::DeleteSerialDevice(std::string deviceName)
+{
+	SerialDevice* device = devices.find(deviceName)->second;
+	devices.erase(deviceName);
+	delete device;
+}
+
 SerialDevice* SerialManager::GetSerialDevice(std::string deviceName)
 {
 	if (devices.find(deviceName) == devices.end())

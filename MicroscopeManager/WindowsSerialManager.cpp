@@ -9,8 +9,7 @@
 */
 
 #include "WindowsSerialManager.h"
-#include "WindowsSerialDevice.h"
-#include <iostream>
+#include "windows.h"
 
 std::vector<std::string> WindowsSerialManager::GetSerialPorts()
 {
@@ -60,26 +59,4 @@ std::vector<std::string> WindowsSerialManager::GetSerialPorts()
 	}
 
 	return portList;
-}
-
-void WindowsSerialManager::CreateSerialDevice(std::string deviceName, std::string portName, int baudrate, std::vector<std::string> exitCommands)
-{
-	HANDLE port = CreateFileA(
-		portName.c_str(),
-		GENERIC_READ | GENERIC_WRITE,
-		0,
-		0,
-		OPEN_EXISTING,
-		0,
-		0);
-
-	devices.emplace(deviceName, new WindowsSerialDevice(port, baudrate, exitCommands));
-}
-
-void WindowsSerialManager::DeleteSerialDevice(std::string deviceName)
-{
-	std::cout << deviceName << " disconnected\n";
-	SerialDevice* device = devices.find(deviceName)->second;
-	devices.erase(deviceName);
-	delete device;
 }

@@ -11,8 +11,8 @@ public:
 	virtual ~SerialManager();
 
 	virtual std::vector<std::string> GetSerialPorts() = 0;
-	virtual void CreateSerialDevice(std::string deviceName, std::string portName, int baudrate, std::vector<std::string> exitCommands) = 0;
-	virtual void DeleteSerialDevice(std::string deviceName) = 0;
+	virtual void CreateSerialDevice(std::string deviceName, std::string portName, int baudrate, std::vector<std::string> exitCommands);
+	virtual void DeleteSerialDevice(std::string deviceName);
 	SerialDevice* GetSerialDevice(std::string deviceName);
 	std::vector<std::string> GetSerialDeviceNames();
 protected:
