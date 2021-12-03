@@ -35,9 +35,22 @@ void SerialDevice::WriteData(const char buf[], unsigned long long writeSize)
 
 std::string SerialDevice::ReadData(unsigned long long readSize)
 {
+	std::string output = "";
 	std::string buf;
-	device_->readline(buf, readSize);
-	return buf;
+	int count = 0;
+	int maxCount = std::min(readSize, device_->available());
+	while (count < maxCount)
+	{
+		buf = device_->read(1);
+		if (buf == "\n" || buf == "\r")
+		{
+			break;
+		}
+		output += buf;
+		count++;
+	}
+	
+	return output;
 }
 
 void SerialDevice::SetExitCommands(std::vector<std::string> exitCommands)
