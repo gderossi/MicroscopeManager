@@ -2,6 +2,20 @@
 
 #include <thread>
 #include <atomic>
+#include <chrono>
+#include <string>
+
+typedef struct MICROSCOPE_METADATA
+{
+	long long timestamp;
+	char currentOdor;
+	int planeCount;
+	float volumeRange;
+	char currentLaser;
+	float laserPower;
+	int cameraMode;
+	char sampleInfo[478];
+};
 
 class MMThread
 {

@@ -21,6 +21,8 @@ EGrabberCameraManager::EGrabberCameraManager() :
 
 	imgBuffer_.SetSize(w, h);
 	imgBuffer_.SetPixelDepth(d);
+	cameraMask_.SetSize(w, h);
+	cameraMask_.SetPixelDepth(d);
 }
 
 double EGrabberCameraManager::GetFloatParameter(int module, std::string name)

@@ -289,6 +289,22 @@ unsigned long long MicroscopeManager::GetImageBufferSize()
 	return 0;
 }
 
+void MicroscopeManager::CreateCameraMask(int imageCount)
+{
+	if (cameraManager)
+	{
+		cameraManager->CreateCameraMask(imageCount);
+	}
+}
+
+void MicroscopeManager::ApplyCameraMask()
+{
+	if (cameraManager)
+	{
+		cameraManager->ApplyCameraMask();
+	}
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // ImageManager functions
 ///////////////////////////////////////////////////////////////////////////////

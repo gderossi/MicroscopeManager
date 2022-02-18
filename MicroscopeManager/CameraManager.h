@@ -23,8 +23,11 @@ public:
 	virtual void GetImage() = 0;
 	virtual unsigned char* GetImageBuffer();
 	virtual unsigned long long GetImageBufferSize();
+	virtual void CreateCameraMask(int imageCount);
+	virtual void ApplyCameraMask();
 
 protected:
 	ImageBuffer imgBuffer_;
+	ImageBuffer cameraMask_;
 	unsigned long long bufferCount_;
 };

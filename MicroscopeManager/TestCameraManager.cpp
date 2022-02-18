@@ -6,6 +6,9 @@ TestCameraManager::TestCameraManager()
 
 	imgBuffer_.SetSize(1920, 1080);
 	imgBuffer_.SetPixelDepth(1);
+	cameraMask_.SetSize(1920, 1080);
+	cameraMask_.SetPixelDepth(1);
+	CreateCameraMask(10);
 }
 
 TestCameraManager::~TestCameraManager()

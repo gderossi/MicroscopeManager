@@ -41,6 +41,8 @@ public:
 	void GetImage();
 	unsigned char* GetImageBuffer();
 	unsigned long long GetImageBufferSize();
+	void CreateCameraMask(int imageCount);
+	void ApplyCameraMask();
 
 	void CreateFile();
 	void OpenFile();

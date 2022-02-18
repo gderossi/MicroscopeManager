@@ -75,6 +75,7 @@ void RawImageManager::WriteFile(unsigned char* buf, unsigned long long writeSize
 		DWORD bytesWritten;
 
 		::WriteFile(file_, buf, writeSize, &bytesWritten, NULL);
+		DWORD testCount = bytesWritten;
 	}
 }
 
