@@ -29,7 +29,7 @@ MicroscopeManager::~MicroscopeManager()
 {
 	StopAcquisition();
 
-	if (imageManager)
+	if(imageManager)
 	{
 		delete imageManager;
 	}
@@ -60,10 +60,7 @@ void MicroscopeManager::SetFilename(std::string filename)
 
 void MicroscopeManager::CreateImageManager(std::string imageManagerType, char* parameters)
 {
-	if (imageManager)
-	{
-		delete imageManager;
-	}
+	
 
 	if (imageManagerType == "Raw")
 	{
@@ -333,7 +330,7 @@ void MicroscopeManager::CloseFile()
 	}
 }
 
-void MicroscopeManager::WriteFile(unsigned char* buf, unsigned long long writeSize, bool process /*=false*/, bool compress /*=false*/)
+void MicroscopeManager::WriteFile(unsigned char* buf, unsigned long long writeSize, bool newImage /*=false*/, bool process /*=false*/, bool compress /*=false*/)
 {
 	if (imageManager)
 	{
@@ -346,7 +343,7 @@ void MicroscopeManager::WriteFile(unsigned char* buf, unsigned long long writeSi
 			imageManager->CompressData();
 		}
 
-		imageManager->WriteFile(buf, writeSize);
+		imageManager->WriteFile(buf, writeSize, newImage);
 	}
 }
 

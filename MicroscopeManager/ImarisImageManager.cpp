@@ -82,7 +82,7 @@ void ImarisImageManager::CloseFile()
 	open_ = false;
 }
 
-void ImarisImageManager::WriteFile(unsigned char* buf, unsigned long long writeSize)
+void ImarisImageManager::WriteFile(unsigned char* buf, unsigned long long writeSize, bool newImage/*=false*/)
 {
 	imageConverter->CopyBlock(buf,
 		{ {blockDimensionSequence_[0], 0},

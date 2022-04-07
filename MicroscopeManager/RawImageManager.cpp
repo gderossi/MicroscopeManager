@@ -5,7 +5,11 @@ RawImageManager::RawImageManager(std::string filename) :
 	file_(0),
 	open_(false)
 {
-
+	fileHeader_[0] = 82;
+	fileHeader_[1] = 512;
+	fileHeader_[2] = 1920;
+	fileHeader_[3] = 1080;
+	fileHeader_[4] = 0;
 }
 
 RawImageManager::~RawImageManager()
@@ -38,6 +42,8 @@ void RawImageManager::CreateFile()
 			FILE_ATTRIBUTE_NORMAL | FILE_FLAG_NO_BUFFERING | FILE_FLAG_WRITE_THROUGH,
 			NULL);
 
+		SetFilePointer(file_, 512, NULL, FILE_BEGIN);
+
 		open_ = true;
 	}
 }
@@ -62,20 +68,29 @@ void RawImageManager::CloseFile()
 {
 	if (open_)
 	{
+		DWORD bytesWritten;
+		SetFilePointer(file_, 0, NULL, FILE_BEGIN);
+		::WriteFile(file_, fileHeader_, 512, &bytesWritten, NULL);
+
+
 		CloseHandle(file_);
 		file_ = 0;
 		open_ = false;
 	}
 }
 
-void RawImageManager::WriteFile(unsigned char* buf, unsigned long long writeSize)
+void RawImageManager::WriteFile(unsigned char* buf, unsigned long long writeSize, bool newImage /*=false*/)
 {
 	if (open_)
 	{
 		DWORD bytesWritten;
 
 		::WriteFile(file_, buf, writeSize, &bytesWritten, NULL);
-		DWORD testCount = bytesWritten;
+		
+		if (newImage)
+		{
+			fileHeader_[4]++;
+		}
 	}
 }
 

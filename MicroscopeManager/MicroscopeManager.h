@@ -8,8 +8,6 @@ enum IMAGE_MANAGERS {RAW, IMARIS};
 enum CAMERA_MANAGERS {EGRABBER, FLIR};
 enum SERIAL_MANAGERS {WINDOWS};
 
-#undef CreateFile
-
 class MicroscopeManager
 {
 public:
@@ -47,7 +45,7 @@ public:
 	void CreateFile();
 	void OpenFile();
 	void CloseFile();
-	void WriteFile(unsigned char* buf, unsigned long long writeSize, bool process=false, bool compress=false);
+	void WriteFile(unsigned char* buf, unsigned long long writeSize, bool newImage = false, bool process = false, bool compress = false);
 	void ReadFile(unsigned char* buf, unsigned long long readSize);
 
 	std::vector<std::string> imageManagerTypes;

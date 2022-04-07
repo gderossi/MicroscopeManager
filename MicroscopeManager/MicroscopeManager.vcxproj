@@ -155,11 +155,13 @@
     <ClCompile Include="ImarisImageManager.cpp" />
     <ClCompile Include="MicroscopeManager.cpp" />
     <ClCompile Include="MMThread.cpp" />
+    <ClCompile Include="ProducerThread.cpp" />
     <ClCompile Include="RawImageManager.cpp" />
     <ClCompile Include="SerialDevice.cpp" />
     <ClCompile Include="SerialManager.cpp" />
     <ClCompile Include="TestCameraManager.cpp" />
     <ClCompile Include="WindowsSerialManager.cpp" />
+    <ClCompile Include="WriterThread.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AcquisitionThread.h" />
@@ -173,12 +175,14 @@
     <ClInclude Include="ImarisImageManager.h" />
     <ClInclude Include="MicroscopeManager.h" />
     <ClInclude Include="MMThread.h" />
+    <ClInclude Include="ProducerThread.h" />
     <ClInclude Include="RawImageManager.h" />
     <ClInclude Include="SerialDevice.h" />
     <ClInclude Include="SerialManager.h" />
     <ClInclude Include="SerialManagers.h" />
     <ClInclude Include="TestCameraManager.h" />
     <ClInclude Include="WindowsSerialManager.h" />
+    <ClInclude Include="WriterThread.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

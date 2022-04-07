@@ -5,7 +5,7 @@
 #include <chrono>
 #include <string>
 
-typedef struct MICROSCOPE_METADATA
+struct MICROSCOPE_METADATA
 {
 	long long timestamp;
 	char currentOdor;

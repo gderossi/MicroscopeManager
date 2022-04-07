@@ -18,7 +18,7 @@ public:
     void CreateFile();
     void OpenFile();
     void CloseFile();
-    void WriteFile(unsigned char* buf, unsigned long long writeSize);
+    void WriteFile(unsigned char* buf, unsigned long long writeSize, bool newImage=false);
     void ReadFile(unsigned char* buf, unsigned long long readSize);
     void SetFilename(std::string filename);
 
@@ -26,5 +26,6 @@ private:
     std::string filename_;
     HANDLE file_;
     bool open_;
+    uint32_t fileHeader_[5];
 };
 
