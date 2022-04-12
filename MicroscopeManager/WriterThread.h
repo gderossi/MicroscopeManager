@@ -10,7 +10,7 @@ class WriterThread :
     public MMThread
 {
 public:
-    WriterThread(std::string filename, unsigned int bufsize, int id, ProducerThread* producer, ImageManager* img);
+    WriterThread(ProducerThread* producer, ImageManager* img);
     virtual ~WriterThread();
     void WaitForThread();
     std::atomic_bool ready;
@@ -19,10 +19,9 @@ private:
     void WriteLoop();
 
     int id_;
-    std::string filename_;
     std::thread thd_;
     unsigned char* buf_;
-    int bufsize_;
+    int bufSize_;
     ImageManager* img_;
     ProducerThread* producer_;
 };

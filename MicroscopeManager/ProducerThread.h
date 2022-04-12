@@ -19,18 +19,18 @@ public:
 
     std::mutex pMutex;
     std::condition_variable pCV;
-    int currentID;
-    unsigned char* buf;
-    bool bufCopied;
+    int producerIndex;
+    std::vector<unsigned char*> imgBuffers;
+    std::vector<bool> bufReadys;
     MicroscopeManager* mm_;
     std::atomic_bool masked;
+    int bufSize;
+    int lastWriterID;
 
 private:
     void ProducerLoop();
 
     std::thread thd_;
     std::vector<WriterThread*> writerThreads_;
-    int bufSize_;
-    
 };
 

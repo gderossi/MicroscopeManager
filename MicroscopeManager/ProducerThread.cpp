@@ -2,20 +2,32 @@
 #include "WriterThread.h"
 
 ProducerThread::ProducerThread(int bufsize, MicroscopeManager* mm) :
-	currentID(0),
-	buf(new unsigned char[bufsize]),
-	bufSize_(bufsize),
-	bufCopied(false),
-	mm_(mm)
-{
-	
-}
+	producerIndex(0),
+	bufSize(bufsize),
+	mm_(mm),
+	lastWriterID(0)
+{}
 
 ProducerThread::~ProducerThread()
 {
-	delete buf;
+	for (unsigned char* buf : imgBuffers)
+	{
+		VirtualFree(buf, 0, MEM_RELEASE);
+	}
+
+	{
+		std::unique_lock<std::mutex> ul(pMutex);
+		for (int i = 0; i < writerThreads_.size(); i++)
+		{
+			writerThreads_[i]->StopThread();
+			bufReadys[i] = true;
+		}
+	}
+	pCV.notify_all();
+	
 	for (WriterThread* writer : writerThreads_)
 	{
+		writer->WaitForThread();
 		delete writer;
 	}
 	writerThreads_.clear();
@@ -34,28 +46,36 @@ void ProducerThread::WaitForThread()
 void ProducerThread::AddWriterThread(WriterThread* writer)
 {
 	writerThreads_.push_back(writer);
+	imgBuffers.push_back((unsigned char*)VirtualAlloc(NULL, bufSize, MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE));
+	bufReadys.push_back(false);
 }
 
 void ProducerThread::ProducerLoop()
 {
 	while (active)
 	{
-		std::unique_lock<std::mutex> ul(pMutex);
-		currentID++;
-		if (currentID == writerThreads_.size())
 		{
-			currentID = 0;
-		}
-		bufCopied = false;
-		masked = false;
-		mm_->GetImage();
-		mm_->ApplyCameraMask();
-		masked = true;
-		memcpy(buf, mm_->GetImageBuffer(), bufSize_);
-		ul.unlock();
-		pCV.notify_all();
-		ul.lock();
-		pCV.wait(ul, [this]() {return bufCopied; });
-	}
+			std::unique_lock<std::mutex> ul(pMutex);
+			
+			if (bufReadys[producerIndex])
+			{
+				pCV.wait(ul, [this]() {return !bufReadys[producerIndex]; });
+			}
 
+			masked = false;
+			mm_->GetImage();
+			mm_->ApplyCameraMask();
+			masked = true;
+
+			memcpy(imgBuffers[producerIndex], mm_->GetImageBuffer(), bufSize);
+			bufReadys[producerIndex] = true;
+
+			producerIndex++;
+			if (producerIndex == writerThreads_.size())
+			{
+				producerIndex = 0;
+			}
+		}
+		pCV.notify_all();
+	}
 }
