@@ -46,6 +46,8 @@ void CameraManager::CreateCameraMask(int imageCount)
 		{
 			cameraMask_.pixels[i] = (char)(maskSumBuffer[i] / imageCount);
 		}
+
+		delete[] maskSumBuffer;
 	}
 }
 
