@@ -78,7 +78,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>C:\Users\ramanlab\source\repos\ImarisWriterTest\ImarisWriter\release\Debug;C:\src\serial\serial\visual_studio\x64\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\ramanlab\source\repos\ImarisWriterTest\ImarisWriter\release\Debug;C:\src\serial\serial\visual_studio\x64\Debug;C:\Users\ramanlab\src\tiff-4.3.0\buildx86\tools\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -117,7 +117,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files\Euresys\eGrabber\include;C:\Users\ramanlab\source\repos\ImarisWriterTest\ImarisWriter\interface;C:\Program Files\FLIR Systems\Spinnaker\include;C:\src\serial\serial\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\Euresys\eGrabber\include;C:\Users\ramanlab\source\repos\ImarisWriterTest\ImarisWriter\interface;C:\Program Files\FLIR Systems\Spinnaker\include;C:\src\serial\serial\include;C:\Users\ramanlab\src\tiff-4.3.0\libtiff;C:\Users\ramanlab\src\tiff-4.3.0\buildx86\libtiff</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -160,6 +160,7 @@
     <ClCompile Include="SerialDevice.cpp" />
     <ClCompile Include="SerialManager.cpp" />
     <ClCompile Include="TestCameraManager.cpp" />
+    <ClCompile Include="TIFFImageManager.cpp" />
     <ClCompile Include="WindowsSerialManager.cpp" />
     <ClCompile Include="WriterThread.cpp" />
   </ItemGroup>
@@ -181,6 +182,7 @@
     <ClInclude Include="SerialManager.h" />
     <ClInclude Include="SerialManagers.h" />
     <ClInclude Include="TestCameraManager.h" />
+    <ClInclude Include="TIFFImageManager.h" />
     <ClInclude Include="WindowsSerialManager.h" />
     <ClInclude Include="WriterThread.h" />
   </ItemGroup>

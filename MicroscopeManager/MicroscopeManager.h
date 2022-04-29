@@ -4,9 +4,9 @@
 #include "CameraManagers.h"
 #include "SerialManagers.h"
 
-enum IMAGE_MANAGERS {RAW, IMARIS};
-enum CAMERA_MANAGERS {EGRABBER, FLIR};
-enum SERIAL_MANAGERS {WINDOWS};
+//enum IMAGE_MANAGERS {RAW, IMARIS};
+//enum CAMERA_MANAGERS {EGRABBER, FLIR};
+//enum SERIAL_MANAGERS {WINDOWS};
 
 class MicroscopeManager
 {

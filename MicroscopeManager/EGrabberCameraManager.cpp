@@ -25,6 +25,11 @@ EGrabberCameraManager::EGrabberCameraManager() :
 	cameraMask_.SetPixelDepth(d);
 }
 
+EGrabberCameraManager::~EGrabberCameraManager()
+{
+	grabber.stop();
+}
+
 double EGrabberCameraManager::GetFloatParameter(int module, std::string name)
 {
 	switch (module)

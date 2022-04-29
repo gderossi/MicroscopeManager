@@ -4,3 +4,4 @@
 
 #include "RawImageManager.h"
 #include "ImarisImageManager.h"
+#include "TIFFImageManager.h"

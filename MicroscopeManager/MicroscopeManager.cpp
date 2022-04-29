@@ -17,6 +17,7 @@ MicroscopeManager::MicroscopeManager(std::string filename) :
 {
 	imageManagerTypes.push_back("Raw");
 	imageManagerTypes.push_back("Imaris");
+	imageManagerTypes.push_back("TIFF");
 
 	cameraManagerTypes.push_back("EGrabber");
 	cameraManagerTypes.push_back("FLIR");
@@ -70,6 +71,10 @@ void MicroscopeManager::CreateImageManager(std::string imageManagerType, char* p
 	{
 
 		//imageManager = new ImarisImageManager();
+	}
+	else if (imageManagerType == "TIFF")
+	{
+		imageManager = new TIFFImageManager(filename_);
 	}
 }
 

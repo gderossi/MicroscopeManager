@@ -10,11 +10,6 @@ ProducerThread::ProducerThread(int bufsize, MicroscopeManager* mm) :
 
 ProducerThread::~ProducerThread()
 {
-	for (unsigned char* buf : imgBuffers)
-	{
-		VirtualFree(buf, 0, MEM_RELEASE);
-	}
-
 	{
 		std::unique_lock<std::mutex> ul(pMutex);
 		for (int i = 0; i < writerThreads_.size(); i++)
@@ -31,6 +26,11 @@ ProducerThread::~ProducerThread()
 		delete writer;
 	}
 	writerThreads_.clear();
+
+	for (unsigned char* buf : imgBuffers)
+	{
+		VirtualFree(buf, 0, MEM_RELEASE);
+	}
 }
 
 void ProducerThread::StartThread()
