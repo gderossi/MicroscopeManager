@@ -28,7 +28,7 @@ public:
     int lastWriterID;
 
 private:
-    void ProducerLoop();
+    virtual void ProducerLoop();
 
     std::thread thd_;
     std::vector<WriterThread*> writerThreads_;

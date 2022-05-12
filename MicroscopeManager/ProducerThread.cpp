@@ -62,10 +62,10 @@ void ProducerThread::ProducerLoop()
 				pCV.wait(ul, [this]() {return !bufReadys[producerIndex]; });
 			}
 
-			masked = false;
+			//masked = false;
 			mm_->GetImage();
-			mm_->ApplyCameraMask();
-			masked = true;
+			//mm_->ApplyCameraMask();
+			//masked = true;
 
 			memcpy(imgBuffers[producerIndex], mm_->GetImageBuffer(), bufSize);
 			bufReadys[producerIndex] = true;

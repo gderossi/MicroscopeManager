@@ -55,21 +55,26 @@ void CameraManager::ApplyCameraMask()
 {
 	if (imgBuffer_.pixels && cameraMask_.pixels)
 	{
-		if (imgBuffer_.GetSize() == cameraMask_.GetSize())
-		{
-			unsigned char pixelMask;
+		unsigned long long bufferSize = imgBuffer_.GetSize();
 
-			for (int i = 0; i < imgBuffer_.GetSize(); i++)
+		if (bufferSize == cameraMask_.GetSize())
+		{
+			unsigned char* pixelMask = cameraMask_.pixels;
+			unsigned char* pixel = imgBuffer_.pixels;
+
+			for (unsigned long long i = 0; i < bufferSize; ++i)
 			{
-				pixelMask = cameraMask_.pixels[i];
-				if (imgBuffer_.pixels[i] > pixelMask)
+				if (*pixel > *pixelMask)
 				{
-					imgBuffer_.pixels[i] -= pixelMask;
+					*pixel -= *pixelMask;
 				}
 				else
 				{
-					imgBuffer_.pixels[i] = 0;
+					*pixel = 0;
 				}
+
+				++pixel;
+				++pixelMask;
 			}
 		}
 	}

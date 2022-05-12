@@ -42,7 +42,7 @@ void RawImageManager::CreateFile()
 			FILE_ATTRIBUTE_NORMAL | FILE_FLAG_NO_BUFFERING | FILE_FLAG_WRITE_THROUGH,
 			NULL);
 
-		SetFilePointer(file_, 512, NULL, FILE_BEGIN);
+		//SetFilePointer(file_, 512, NULL, FILE_BEGIN);
 
 		open_ = true;
 	}
@@ -69,8 +69,8 @@ void RawImageManager::CloseFile()
 	if (open_)
 	{
 		DWORD bytesWritten;
-		SetFilePointer(file_, 0, NULL, FILE_BEGIN);
-		::WriteFile(file_, fileHeader_, 512, &bytesWritten, NULL);
+		//SetFilePointer(file_, 0, NULL, FILE_BEGIN);
+		//::WriteFile(file_, fileHeader_, 512, &bytesWritten, NULL);
 
 
 		CloseHandle(file_);
@@ -87,10 +87,10 @@ void RawImageManager::WriteFile(unsigned char* buf, unsigned long long writeSize
 
 		::WriteFile(file_, buf, writeSize, &bytesWritten, NULL);
 		
-		if (newImage)
+		/*if (newImage)
 		{
 			fileHeader_[4]++;
-		}
+		}*/
 	}
 }
 

@@ -12,7 +12,7 @@ class EGrabberCameraManager :
 {
 public:
 	EGrabberCameraManager();
-	~EGrabberCameraManager();
+	virtual ~EGrabberCameraManager();
 	double GetFloatParameter(int module, std::string name);
 	void SetFloatParameter(int module, std::string name, double value);
 	long long GetIntParameter(int module, std::string name);

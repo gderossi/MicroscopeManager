@@ -23,10 +23,11 @@ private:
 	std::string filename_;
 	TIFF* file_;
 	bool open_;
-	unsigned long height_;
-	unsigned long width_;
-	unsigned char* scanlineBuf_;
+	uint32_t height_;
+	uint32_t width_;
+	tdata_t scanlineBuf_;
 	bool writing_;
 	bool multiImage_;
+	uint16_t page_;
 };
 

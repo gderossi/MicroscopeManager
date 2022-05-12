@@ -8,17 +8,18 @@ TIFFImageManager::TIFFImageManager(std::string filename, unsigned long width, un
 	open_(false),
 	writing_(false),
 	multiImage_(false),
-	scanlineBuf_(new unsigned char[width])
+	page_(0)
 {
-
+	scanlineBuf_ = _TIFFmalloc(width);
 }
 
 TIFFImageManager::~TIFFImageManager()
 {
 	if (scanlineBuf_)
 	{
-		delete[] scanlineBuf_;
+		_TIFFfree(scanlineBuf_);
 	}
+	CloseFile();
 }
 
 void TIFFImageManager::ProcessData()
@@ -33,7 +34,7 @@ void TIFFImageManager::CreateFile()
 	{
 		filename_ += ".tif";
 	}
-	file_ = TIFFOpen(filename_.c_str(), "w");
+	file_ = TIFFOpen(filename_.c_str(), "w8");
 	open_ = true;
 	multiImage_ = false;
 }
@@ -60,20 +61,19 @@ void TIFFImageManager::WriteFile(unsigned char* buf, unsigned long long writeSiz
 	if (open_)
 	{
 		writing_ = true;
-		if (multiImage_)
-		{
-			TIFFWriteDirectory(file_);
-		}
+
+		//TIFFSetField(file_, TIFFTAG_PAGENUMBER, page_, page_);
+		//TIFFSetField(file_, TIFFTAG_SUBFILETYPE, FILETYPE_PAGE);
 
 		TIFFSetField(file_, TIFFTAG_IMAGEWIDTH, width_);
 		TIFFSetField(file_, TIFFTAG_IMAGELENGTH, height_);
 		TIFFSetField(file_, TIFFTAG_BITSPERSAMPLE, 8);
 		TIFFSetField(file_, TIFFTAG_COMPRESSION, COMPRESSION_NONE);
 		TIFFSetField(file_, TIFFTAG_PHOTOMETRIC, PHOTOMETRIC_MINISBLACK);
-		TIFFSetField(file_, TIFFTAG_FILLORDER, FILLORDER_LSB2MSB);
+		TIFFSetField(file_, TIFFTAG_FILLORDER, FILLORDER_MSB2LSB);
 		TIFFSetField(file_, TIFFTAG_ORIENTATION, ORIENTATION_TOPLEFT);
 		TIFFSetField(file_, TIFFTAG_SAMPLESPERPIXEL, 1);
-		TIFFSetField(file_, TIFFTAG_ROWSPERSTRIP, 4);
+		TIFFSetField(file_, TIFFTAG_ROWSPERSTRIP, 8);
 		TIFFSetField(file_, TIFFTAG_PLANARCONFIG, PLANARCONFIG_CONTIG);
 		TIFFSetField(file_, TIFFTAG_SAMPLEFORMAT, SAMPLEFORMAT_UINT);
 
@@ -83,13 +83,18 @@ void TIFFImageManager::WriteFile(unsigned char* buf, unsigned long long writeSiz
 
 			if (TIFFWriteScanline(file_, scanlineBuf_, row, 0) == -1)
 			{
+				writing_ = false;
 				CloseFile();
-				break;
+				return;
 			}
 		}
+
+		TIFFWriteDirectory(file_);
+		++page_;
 	}
+	
 	writing_ = false;
-	multiImage_ = true;
+	//multiImage_ = true;
 }
 
 void TIFFImageManager::ReadFile(unsigned char* buf, unsigned long long readSize)

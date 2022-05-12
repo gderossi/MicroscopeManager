@@ -13,7 +13,7 @@
 EGrabberCameraManager::EGrabberCameraManager() :
 	grabber(genTL)
 {
-	bufferCount_ = DEFAULT_BUFFER_COUNT;
+	bufferCount_ = 3;
 
 	uint64_t w = grabber.getInteger<StreamModule>("Width");
 	uint64_t h = grabber.getInteger<StreamModule>("Height");
