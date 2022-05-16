@@ -78,7 +78,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>C:\Users\ramanlab\source\repos\ImarisWriterTest\ImarisWriter\release\Debug;C:\src\serial\serial\visual_studio\x64\Debug;C:\Users\ramanlab\src\tiff-4.3.0\buildx86\tools\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\ramanlab\source\repos\ImarisWriterTest\ImarisWriter\release\Debug;C:\src\serial\serial\visual_studio\x64\Debug;C:\Users\ramanlab\src\libtiff-4.1\tiff-4.1\lib\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -118,7 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files\Euresys\eGrabber\include;C:\Users\ramanlab\source\repos\ImarisWriterTest\ImarisWriter\interface;C:\Program Files\FLIR Systems\Spinnaker\include;C:\src\serial\serial\include;C:\Users\ramanlab\src\tiff-4.3.0\libtiff;C:\Users\ramanlab\src\tiff-4.3.0\buildx86\libtiff</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\Euresys\eGrabber\include;C:\Users\ramanlab\source\repos\ImarisWriterTest\ImarisWriter\interface;C:\Program Files\FLIR Systems\Spinnaker\include;C:\src\serial\serial\include;C:\Users\ramanlab\src\libtiff-4.1\tiff-4.1\libtiff</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
     </ClCompile>
