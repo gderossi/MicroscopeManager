@@ -25,6 +25,10 @@ private:
 	hid_t dataspace_;
 	hid_t memspace_;
 	unsigned long long dimsf_[3];
+	unsigned long long count_[3];
+	unsigned long long offset_[3];
+	unsigned long long stride_[3];
+	unsigned long long block_[3];
 	herr_t status_;
 	std::string filename_;
 };
