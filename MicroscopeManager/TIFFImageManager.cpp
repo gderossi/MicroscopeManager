@@ -66,7 +66,7 @@ void TIFFImageManager::WriteFile(unsigned char* buf, unsigned long long writeSiz
 	{
 		file_ = TIFFOpen(filename_.c_str(), "a8");
 		open_ = true;
-		page_ = 0;
+		//page_ = 0;
 	}
     writing_ = true;
 
@@ -102,17 +102,17 @@ void TIFFImageManager::WriteFile(unsigned char* buf, unsigned long long writeSiz
     }
 
 	//TIFFFlush(file_);
-	++page_;
+	//++page_;
 
-	if (page_ >= MAX_PAGE_COUNT)
-	{
-		open_ = false;
-		TIFFClose(file_);
-	}
-	else
-	{
-		TIFFFlush(file_);
-	}
+	//if (page_ >= MAX_PAGE_COUNT)
+	//{
+	open_ = false;
+	TIFFClose(file_);
+	//}
+	//else
+	//{
+		//TIFFFlush(file_);
+	//}
 	
 	writing_ = false;
 	//multiImage_ = true;

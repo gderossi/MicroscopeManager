@@ -1,6 +1,6 @@
 #pragma once
 #include "ImageManager.h"
-#include "hdf5.h"
+#include "H5Cpp.h"
 
 class HDF5ImageManager :
     public ImageManager
@@ -18,18 +18,20 @@ public:
 	void SetFilename(std::string filename);
 
 private:
-	hid_t pList_;
-	hid_t file_;
-	hid_t dataset_;
-	hid_t datatype_;
-	hid_t dataspace_;
-	hid_t memspace_;
-	unsigned long long dimsf_[3];
-	unsigned long long count_[3];
-	unsigned long long offset_[3];
-	unsigned long long stride_[3];
-	unsigned long long block_[3];
-	herr_t status_;
+	H5::DSetCreatPropList pList_;
+	H5::H5File file_;
+	H5::DataSet dataset_;
+	//hid_t datatype_;
+	H5::DataSpace dataspace_;
+	H5::DataSpace memspace_;
+	hsize_t dims_[3];
+	hsize_t maxDims_[3];
+	hsize_t chunkDims_[3];
+	hsize_t offset_[3];
+	unsigned char fillVal_;
+	//unsigned long long stride_[3];
+	//unsigned long long block_[3];
+	//herr_t status_;
 	std::string filename_;
 };
 
